@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบประเมินความเสี่ยงโรคซึมเศร้า</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e3f2fd; /* สีฟ้าอ่อน */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #0275d8;
+        }
+        .form-check-label {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center">แบบประเมินความเสี่ยงโรคซึมเศร้า</h2>
+        <p class="text-center">โปรดเลือกคำตอบที่ตรงหรือใกล้เคียงกับความรู้สึกจริงของท่านมากที่สุด โปรดตอบให้ครบทุกข้อ</p>
+
+        <h3>แบบประเมินความเสี่ยงโรคซึมเศร้า 2 คำถาม (2Q)</h3>
+        <form id="depressionForm">
+            <!-- Question 1 -->
+            <div class="mb-3">
+                <label class="form-label">1. ใน 2 สัปดาห์ที่ผ่านมารวมวันนี้ท่านรู้สึกหดหู่ เศร้า หรือท้อแท้สิ้นหวังหรือไม่</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="q1_yes" value="yes">
+                    <label class="form-check-label" for="q1_yes">มี</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="q1_no" value="no">
+                    <label class="form-check-label" for="q1_no">ไม่มี</label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="mb-3">
+                <label class="form-label">2. ใน 2 สัปดาห์ที่ผ่านมารวมวันนี้ท่านรู้สึก เบื่อ ทำอะไรก็ไม่เพลิดเพลินหรือไม่</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="q2_yes" value="yes">
+                    <label class="form-check-label" for="q2_yes">มี</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="q2_no" value="no">
+                    <label class="form-check-label" for="q2_no">ไม่มี</label>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="checkResult()">ส่งคำตอบ</button>
+        </form>
+
+        <div id="result" class="mt-4"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">ผลการประเมิน</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalMessage">
+            <!-- ข้อความจะแสดงที่นี่ -->
+          </div>
+          <div class="modal-footerฟ">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function checkResult() {
+            const q1 = document.querySelector('input[name="question1"]:checked');
+            const q2 = document.querySelector('input[name="question2"]:checked');
+            const modalMessage = document.getElementById('modalMessage');
+
+            if (!q1 || !q2) {
+                alert("โปรดตอบทุกคำถาม");
+                return;
+            }
+
+            if (q1.value === "yes" || q2.value === "yes") {
+                window.location.href = "Page2.html"; // ลิงก์ไปยังหน้าถัดไป
+            } else {
+                modalMessage.innerHTML = "คุณไม่มีอาการเป็นโรคซึมเศร้า";
+                const resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+                resultModal.show(); // แสดง modal
+            }
+        }
+    </script>
+
+</body>
+</html>
