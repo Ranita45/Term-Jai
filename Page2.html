@@ -227,53 +227,53 @@
         </div>
     </div>
 
-    <script>
-    document.getElementById("depressionForm9Q").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        let score = 0;
-        let allAnswered = true;
-
-        for (let i = 1; i <= 9; i++) {
-            const answer = document.querySelector(`input[name="question${i}"]:checked`);
-            if (answer) {
-                score += parseInt(answer.value);
-            } else {
-                allAnswered = false;
-                break; // ถ้าตอบไม่ครบ ออกจาก loop ทันที
+   <script>
+        document.getElementById("depressionForm9Q").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            let score = 0;
+            let allAnswered = true;
+    
+            for (let i = 1; i <= 9; i++) {
+                const answer = document.querySelector(`input[name="question${i}"]:checked`);
+                if (answer) {
+                    score += parseInt(answer.value);
+                } else {
+                    allAnswered = false;
+                    break; // ถ้าตอบไม่ครบ ออกจาก loop ทันที
+                }
             }
-        }
-
-        if (!allAnswered) {
-            document.getElementById("resultText").innerHTML = `<span class="result-text">กรุณาตอบให้ครบทุกข้อ</span>`;
+    
+            if (!allAnswered) {
+                document.getElementById("resultText").innerHTML = `<span class="result-text">กรุณาตอบให้ครบทุกข้อ</span>`;
+                document.getElementById("resultModal").style.display = "flex"; // แสดง modal
+                return; // หยุดการทำงานถ้าตอบไม่ครบ
+            }
+    
+            let resultMessage = "";
+            if (score < 7) {
+                resultMessage = "ไม่มีภาวะซึมเศร้า";
+            } else if (score <= 9) {
+                resultMessage = "คุณมีความเสี่ยงต่ำ";
+            } else if (score <= 14) {
+                resultMessage = "คุณมีความเสี่ยงปานกลาง";
+            } else {
+                resultMessage = "คุณมีความเสี่ยงสูง";
+            }
+    
+            document.getElementById("resultText").innerHTML = `<span class="result-text">${resultMessage}</span>`;
             document.getElementById("resultModal").style.display = "flex"; // แสดง modal
-            return; // หยุดการทำงานถ้าตอบไม่ครบ
-        }
-
-        let resultMessage = "";
-        if (score < 7) {
-            resultMessage = "ไม่มีภาวะซึมเศร้า";
-        } else if (score <= 9) {
-            resultMessage = "คุณมีความเสี่ยงต่ำ";
-        } else if (score <= 14) {
-            resultMessage = "คุณมีความเสี่ยงปานกลาง";
-        } else {
-            resultMessage = "คุณมีความเสี่ยงสูง";
-        }
-
-        document.getElementById("resultText").innerHTML = `<span class="result-text">${resultMessage}</span>`;
-        document.getElementById("resultModal").style.display = "flex"; // แสดง modal
-    });
-
-    document.getElementById("closeModal").onclick = function() {
-        document.getElementById("resultModal").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target === document.getElementById("resultModal")) {
+        });
+    
+        document.getElementById("closeModal").onclick = function() {
             document.getElementById("resultModal").style.display = "none";
         }
-    }
-</script>
+    
+        window.onclick = function(event) {
+            if (event.target === document.getElementById("resultModal")) {
+                document.getElementById("resultModal").style.display = "none";
+            }
+        }
+    </script>       
 </body>
 </html>
