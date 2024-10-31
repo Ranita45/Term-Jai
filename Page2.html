@@ -66,7 +66,7 @@
 
     <div class="container">
         <h2 class="text-center">แบบประเมินความเสี่ยงภาวะซึมเศร้า 9 คำถาม (9Q)</h2>
-        <p class="text-center">ใน 2 สัปดาห์ที่ผ่านมารวมทั้งวันนี้ ท่านมีอาการเหล่านี้บ่อยแค่ไหน</p>
+        <p class="text-center">ใน 2 สัปดาห์ที่ผ่านมารวมทั้งวันนี้ ท่านมีอาการเหล่านี้บ่อยแค่ไหน (อ้างอิงจากกรมสุขภาพจิต)</p>
 
         <form id="depressionForm9Q">
             <!-- Questions 1 to 9 -->
@@ -224,10 +224,12 @@
             <span class="close" id="closeModal">&times;</span>
             <h3>ผลการประเมิน</h3>
             <p id="resultText"></p>
+            <!-- ปุ่มเปิดลิ้งค์ไปยัง LINE BOT -->
+            <button id="openLineBot" class="btn btn-primary" style="display: none;">พูดคุยกับน้องเติมใจ</button>
         </div>
     </div>
 
-   <script>
+    <script>
         document.getElementById("depressionForm9Q").addEventListener("submit", function(event) {
             event.preventDefault();
     
@@ -257,8 +259,10 @@
                 resultMessage = "คุณมีความเสี่ยงต่ำ";
             } else if (score <= 14) {
                 resultMessage = "คุณมีความเสี่ยงปานกลาง<br><span style='font-weight:normal; font-size:14px;'>ท่านต้องการคำปรึกษาและการดูแลจากผู้เชี่ยวชาญค่ะ น้องเติมใจแนะนำให้คุณได้นะคะ</span>";
+                document.getElementById("openLineBot").style.display = "inline-block"; // Show button
             } else {
                 resultMessage = "คุณมีความเสี่ยงสูง<br><span style='font-weight:normal; font-size:14px;'>ท่านต้องการคำปรึกษาและการดูแลจากผู้เชี่ยวชาญค่ะ น้องเติมใจแนะนำให้คุณได้นะคะ</span>";
+                document.getElementById("openLineBot").style.display = "inline-block"; // Show button
             }
     
             document.getElementById("resultText").innerHTML = `<span class="result-text">${resultMessage}</span>`;
@@ -274,6 +278,11 @@
                 document.getElementById("resultModal").style.display = "none";
             }
         }
+
+        document.getElementById("openLineBot").onclick = function() {
+            window.open("https://liff.line.me/1645278921-kWRPP32q/?accountId=634ckmum", "_blank"); // แทนที่ "YOUR_LINE_BOT_URL" ด้วย URL ของ LINE bot ของคุณ
+        };
+
     </script>       
 </body>
 </html>
