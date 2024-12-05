@@ -256,12 +256,12 @@
             if (score < 7) {
                 resultMessage = "ไม่มีภาวะซึมเศร้า";
             } else if (score <= 9) {
-                resultMessage = "คุณมีความเสี่ยงต่ำ";
+                resultMessage = "คุณมีความเสี่ยงระดับน้อย";
             } else if (score <= 14) {
-                resultMessage = "คุณมีความเสี่ยงปานกลาง<br><span style='font-weight:normal; font-size:14px;'>ท่านต้องการคำปรึกษาและการดูแลจากผู้เชี่ยวชาญค่ะ น้องเติมใจแนะนำให้คุณได้นะคะ</span>";
+                resultMessage = "คุณมีความเสี่ยงระดับปานกลาง<br><span style='font-weight:normal; font-size:14px;'>ท่านต้องการคำปรึกษาและการดูแลจากผู้เชี่ยวชาญค่ะ น้องเติมใจแนะนำให้คุณได้นะคะ</span>";
                 document.getElementById("openLineBot").style.display = "inline-block"; // Show button
             } else {
-                resultMessage = "คุณมีความเสี่ยงสูง<br><span style='font-weight:normal; font-size:14px;'>ท่านต้องการคำปรึกษาและการดูแลจากผู้เชี่ยวชาญค่ะ น้องเติมใจแนะนำให้คุณได้นะคะ</span>";
+                resultMessage = "คุณมีความเสี่ยงระดับรุนแรง<br><span style='font-weight:normal; font-size:14px;'>ท่านต้องการคำปรึกษาและการดูแลจากผู้เชี่ยวชาญค่ะ น้องเติมใจแนะนำให้คุณได้นะคะ</span>";
                 document.getElementById("openLineBot").style.display = "inline-block"; // Show button
             }
     
